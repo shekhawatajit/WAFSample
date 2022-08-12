@@ -26,5 +26,5 @@ jobs:
              azcliversion: 2.36.0
              inlineScript: |
                  az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-                 az deployment sub create --name WAFSampleDeployment --location northeurope --template-file  Main.bicep --parameters resourceGroupName=WAFSample resourceGroupLocation=northeurope appNamePrefix=wafsample
+                 az deployment sub create --name WAFSampleDeployment --location northeurope --template-file  ./Main.bicep --parameters resourceGroupName=WAFSample resourceGroupLocation=northeurope appNamePrefix=wafsample
    
