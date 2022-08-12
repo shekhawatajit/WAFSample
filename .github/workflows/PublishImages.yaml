@@ -1,0 +1,45 @@
+name: Docker Image Publishing
+
+on: 
+  workflow_dispatch:
+
+env:
+  SQL_IMAGE_NAME: wafsample-dbsvr
+  API_IMAGE_NAME: wafsample-api
+  WEB_IMAGE_NAME: wafsample-web
+
+jobs:
+  build:
+    name: Build container image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Log into registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ${{ secrets.ACR_ENDPOINT }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      
+      - name: Build & Push SQL DB 
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.SQL_IMAGE_NAME }}:${{ github.sha }}
+          file: ./ProductDB/Dockerfile
+
+      - name: Build & Push API 
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.API_IMAGE_NAME }}:${{ github.sha }}
+          file: ./ProductApi/Dockerfile
+
+      - name: Build & Push Web App
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.WEB_IMAGE_NAME }}:${{ github.sha }}
+          file: ./webapp/Dockerfile                    

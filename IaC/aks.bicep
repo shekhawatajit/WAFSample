@@ -7,7 +7,7 @@ param appNamePrefix string
 @description('Tag for resources should be deployed.')
 param appTags object
 
-var acrName = '${appNamePrefix}-acr'
+var acrName = '${appNamePrefix}acr'
 //var aksAdminName = '${appNamePrefix}-aksadmin'
 
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
