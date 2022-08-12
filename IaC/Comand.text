@@ -1,0 +1,1 @@
+az deployment sub create --name WAFSampleDeployment --location northeurope --template-file  Main.bicep --parameters resourceGroupName=WAFSample resourceGroupLocation=northeurope appNamePrefix=wafsample
