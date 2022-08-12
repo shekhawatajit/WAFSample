@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
     WORKDIR /src
 
     # Copy file from current dir (that runs docker build) to docker container dir
-    COPY ProductItemsTable.sql ./ProductItemsTable.sql
+    COPY ./ProductDB/ProductItemsTable.sql ./ProductItemsTable.sql
 
     # RUN SQL SERVER and Access SQL CLI on localhost with given credentials 
     # Then run SQL Script - filldata.sql
