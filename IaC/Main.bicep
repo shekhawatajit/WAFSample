@@ -26,3 +26,12 @@ module Network 'Network.bicep' = {
     appTags: appTags
   }
 }
+module App 'aks.bicep' = {
+  name: 'App'
+  scope: resourceGroup
+  params: {
+    location: resourceGroupLocation
+    appNamePrefix: appNamePrefix
+    appTags: appTags
+  }
+}
