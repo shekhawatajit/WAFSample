@@ -8,14 +8,14 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
+COPY ./webapp/package.json ./
+COPY ./webapp/package-lock.json ./
 RUN npm install -g npm@8.16.0
 RUN npm install --silent
 RUN npm install react-scripts@5.0.1 --location=global --silent
 
 # add app
-COPY . ./
+COPY ./webapp/ ./
 
 # start app
 CMD ["npm", "start"]

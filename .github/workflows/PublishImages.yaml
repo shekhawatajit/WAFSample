@@ -27,19 +27,19 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.SQL_IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.SQL_IMAGE_NAME }}:development
           file: ./ProductDB/Dockerfile
 
       - name: Build & Push API 
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.API_IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.API_IMAGE_NAME }}:development
           file: ./ProductApi/Dockerfile
 
       - name: Build & Push Web App
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.WEB_IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.WEB_IMAGE_NAME }}:development
           file: ./webapp/Dockerfile                    
